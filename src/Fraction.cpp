@@ -4,7 +4,7 @@
 #include <utility>
 #include <vector>
 
-Fraction::Fraction(const long numerator) : num(numerator) {}
+Fraction::Fraction(const unsigned long numerator) : num(numerator) {}
 
 Fraction::Fraction(const std::string& numerator, const std::string& denominator)
     : num(numerator), den(denominator) {
@@ -33,6 +33,14 @@ void Fraction::simplify() {
     normalize_sign();
 }
 
+Fraction Fraction::negate() const {
+    mpz_class numerator = -num;
+    mpz_class denominator = den;
+
+    return { numerator, denominator };
+}
+
+
 std::string Fraction::get_value(const std::size_t decimal_digits) const {
     const auto bits = static_cast<mpfr_prec_t>(decimal_digits * 3.32193 + 100);
 
@@ -60,6 +68,17 @@ std::string Fraction::get_value(const std::size_t decimal_digits) const {
 
 const mpz_class& Fraction::get_num() const { return num; }
 const mpz_class& Fraction::get_den() const { return den; }
+
+
+Fraction Fraction::inverse() const {
+    if (num < 0) throw std::invalid_argument("Cannot inverse a fraction with zero as numerator");
+
+    const mpz_class numerator = den;
+    const mpz_class denominator = num;
+
+    return {numerator, denominator};
+}
+
 
 Fraction Fraction::operator+(const Fraction& other) const {
     const mpz_class n = num * other.den + other.num * den;

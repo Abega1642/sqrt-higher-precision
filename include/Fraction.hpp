@@ -7,7 +7,7 @@ class Fraction {
 	mpz_class den;
 
 	public:
-		explicit Fraction(long numerator);
+		explicit Fraction(unsigned long numerator);
 		Fraction(const std::string& numerator, const std::string& denominator);
 		Fraction(mpz_class  numerator, mpz_class  denominator);
 
@@ -19,6 +19,8 @@ class Fraction {
 		void simplify();
 		void normalize_sign();
 
+		[[nodiscard]] Fraction inverse() const;
+		[[nodiscard]] Fraction negate() const;
 		[[nodiscard]] Fraction pow(int n) const;
 
 		Fraction operator+(const Fraction& other) const;

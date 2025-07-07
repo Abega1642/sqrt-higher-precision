@@ -7,6 +7,19 @@ Approximator::Approximator(const unsigned long number) : Sequence(number) {
 	square_deviation = root_value_squared - get_n();
 }
 
+unsigned long Approximator::get_root_value_squared() const {
+	return root_value_squared();
+}
+
+unsigned long Approximator::get_square_deviation() const {
+	return square_deviation;
+}
+
+unsigned long Approximator::get_root_value() const {
+	return root_value;
+}
+
+
 Fraction Approximator::k_th_value(const unsigned long k) {
 	if (root_value_squared == this->get_n())
 		return Fraction(0);

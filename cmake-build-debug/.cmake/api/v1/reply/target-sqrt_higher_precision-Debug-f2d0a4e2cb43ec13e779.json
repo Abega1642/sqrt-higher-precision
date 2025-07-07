@@ -225,7 +225,7 @@
 		},
 		{
 			"backtrace" : 2,
-			"path" : "src/SquareRoot.h",
+			"path" : "include/SquareRoot.hpp",
 			"sourceGroupIndex" : 1
 		}
 	],

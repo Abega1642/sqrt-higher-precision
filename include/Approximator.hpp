@@ -7,6 +7,9 @@ class Approximator : public Sequence {
 	unsigned long square_deviation;
 
 	public:
+		[[nodiscard]] unsigned long get_root_value() const;
+		[[nodiscard]] unsigned long get_root_value_squared() const;
+		[[nodiscard]] unsigned long get_square_deviation() const;
 		explicit Approximator(unsigned long number);
 		Fraction k_th_value(unsigned long k) override;
 };
