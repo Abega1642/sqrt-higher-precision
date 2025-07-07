@@ -8,7 +8,7 @@ Approximator::Approximator(const unsigned long number) : Sequence(number) {
 }
 
 unsigned long Approximator::get_root_value_squared() const {
-	return root_value_squared();
+	return root_value_squared;
 }
 
 unsigned long Approximator::get_square_deviation() const {
