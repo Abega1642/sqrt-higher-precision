@@ -1,0 +1,9 @@
+{
+  "name": "sqrt-higher-precision",
+  "version": "0.1.0",
+  "dependencies": [
+    "gmp",
+    "mpfr",
+    "gtest"
+  ]
+}

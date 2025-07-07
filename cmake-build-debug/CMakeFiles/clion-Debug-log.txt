@@ -1,0 +1,15 @@
+/home/abega/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/abega/.local/share/JetBrains/Toolbox/apps/clion/bin/ninja/linux/x64/ninja -G Ninja -S /home/abega/Documents/Computer_Science_works/sqrt-higher-precision -B /home/abega/Documents/Computer_Science_works/sqrt-higher-precision/cmake-build-debug
+CMake Error at CMakeLists.txt:23 (find_package):
+  Could not find a package configuration file provided by "GTest" with any of
+  the following names:
+
+    GTestConfig.cmake
+    gtest-config.cmake
+
+  Add the installation prefix of "GTest" to CMAKE_PREFIX_PATH or set
+  "GTest_DIR" to a directory containing one of the above files.  If "GTest"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+
+
+-- Configuring incomplete, errors occurred!

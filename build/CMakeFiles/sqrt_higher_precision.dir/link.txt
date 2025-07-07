@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/sqrt_higher_precision.dir/src/main.cpp.o -o sqrt_higher_precision   -L/home/abega/Documents/Computer_Science_works/sqrt-higher-precision/vcpkg_installed/x64-linux/lib  -Wl,-rpath,/home/abega/Documents/Computer_Science_works/sqrt-higher-precision/vcpkg_installed/x64-linux/lib -lmpfr -lgmp

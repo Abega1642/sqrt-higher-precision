@@ -1,0 +1,4 @@
+# ninja log v6
+3	84	1751899217803010278	CMakeFiles/sqrt_higher_precision.dir/test/test_main.cpp.o	c6c2af9ec9a5599b
+2	805	1751899217799010289	CMakeFiles/sqrt_higher_precision.dir/src/main.cpp.o	fa78d43de96781e8
+806	954	1751899218603008212	sqrt_higher_precision	f11af3d351234e3e

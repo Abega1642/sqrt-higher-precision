@@ -1,0 +1,5 @@
+/home/abega/Documents/Computer_Science_works/sqrt-higher-precision/build/CMakeFiles/sqrt_higher_precision.dir
+/home/abega/Documents/Computer_Science_works/sqrt-higher-precision/build/CMakeFiles/tests.dir
+/home/abega/Documents/Computer_Science_works/sqrt-higher-precision/build/CMakeFiles/test.dir
+/home/abega/Documents/Computer_Science_works/sqrt-higher-precision/build/CMakeFiles/edit_cache.dir
+/home/abega/Documents/Computer_Science_works/sqrt-higher-precision/build/CMakeFiles/rebuild_cache.dir

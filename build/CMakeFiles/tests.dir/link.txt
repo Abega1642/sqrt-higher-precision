@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/tests.dir/tests/test_main.cpp.o -o tests  vcpkg_installed/x64-linux/debug/lib/libgtest.a vcpkg_installed/x64-linux/debug/lib/manual-link/libgtest_main.a -lpthread vcpkg_installed/x64-linux/debug/lib/libgtest.a

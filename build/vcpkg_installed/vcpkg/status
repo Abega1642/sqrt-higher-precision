@@ -1,0 +1,51 @@
+Package: vcpkg-cmake
+Version: 2024-04-23
+Architecture: x64-linux
+Multi-Arch: same
+Abi: f2f292be0935a5ce7943c5a3de03e771b1572a22a4f92b6c91fd5fc678dd7b07
+Status: install ok installed
+
+Package: vcpkg-cmake-get-vars
+Version: 2025-05-29
+Depends: vcpkg-cmake
+Architecture: x64-linux
+Multi-Arch: same
+Abi: 78a960de8639d87653d83312ee835a23f9fddb7a81d4bc9492a5ebc1bb379477
+Status: install ok installed
+
+Package: gmp
+Version: 6.3.0
+Port-Version: 2
+Depends: gmp, vcpkg-cmake-get-vars
+Architecture: x64-linux
+Multi-Arch: same
+Abi: 83a233ffba0da1a74e600633d0a28d6cffd1559f9563e7f76e56f172858c6712
+Description: The GNU Multiple Precision Arithmetic Library
+Status: install ok installed
+
+Package: vcpkg-cmake-config
+Version: 2024-05-23
+Architecture: x64-linux
+Multi-Arch: same
+Abi: dd348bb51b0c0de1eecd461d93206a6564cc7dfb1c854ee01b5a82a4758a6551
+Status: install ok installed
+
+Package: gtest
+Version: 1.17.0
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-linux
+Multi-Arch: same
+Abi: d1b49d505230d41e8b6c08d05a16bab417b6e8d1c462d5fb490edb8104db312d
+Description: Google Testing and Mocking Framework
+Status: install ok installed
+
+Package: mpfr
+Version: 4.2.2
+Depends: gmp
+Architecture: x64-linux
+Multi-Arch: same
+Abi: a5107097890c4c7d03176b13ad91dba4e6800610a5895896d8cd40a20098ed69
+Description: The MPFR library is a C library for multiple-precision floating-point computations with correct rounding
+Status: install ok installed
+
