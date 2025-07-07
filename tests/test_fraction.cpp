@@ -85,3 +85,28 @@ TEST_F(FractionTest, StreamOutputIsCorrect) {
 	ss << f1;
 	EXPECT_EQ(ss.str(), "2/3");
 }
+
+TEST_F(FractionTest, PowerOfLargeExponent) {
+	const Fraction subject("3", "2");
+	const Fraction result = subject.pow(10);  // -> 59049 / 1024
+
+	EXPECT_EQ(result.get_num(), mpz_class("59049"));
+	EXPECT_EQ(result.get_den(), mpz_class("1024"));
+}
+
+TEST_F(FractionTest, PowerWithNegativeExponent) {
+	const Fraction subject("5", "7");
+	const Fraction result = subject.pow(-3);  // -> 343 / 125
+
+	EXPECT_EQ(result.get_num(), mpz_class("343"));
+	EXPECT_EQ(result.get_den(), mpz_class("125"));
+}
+
+TEST_F(FractionTest, PowerOfZeroNumerator) {
+	const Fraction subject("0", "999999999999999999999999999999999999999");
+	const Fraction result = subject.pow(1000000);
+
+	EXPECT_EQ(result.get_num(), 0);
+	EXPECT_EQ(result.get_den(), 1);
+}
+
