@@ -1,4 +1,23 @@
 # ninja log v6
-3	84	1751899217803010278	CMakeFiles/sqrt_higher_precision.dir/test/test_main.cpp.o	c6c2af9ec9a5599b
-2	805	1751899217799010289	CMakeFiles/sqrt_higher_precision.dir/src/main.cpp.o	fa78d43de96781e8
+3	1443	1751905779239544100	CMakeFiles/tests.dir/src/Fraction.cpp.o	1d7038b215ba12b7
+2	6211	1751905644008427954	CMakeFiles/tests.dir/tests/test_main.cpp.o	26ebd66e74462a8e
+13	3024	1751907251128571839	CMakeFiles/tests.dir/tests/test_fraction.cpp.o	73fb5c91ac628e2b
 806	954	1751899218603008212	sqrt_higher_precision	f11af3d351234e3e
+2	805	1751899217799010289	CMakeFiles/sqrt_higher_precision.dir/src/main.cpp.o	fa78d43de96781e8
+3	2189	1751908272820491510	build.ninja	987febbd8cf80e9
+3	1430	1751908272832491629	CMakeFiles/tests.dir/src/Fraction.cpp.o	5f3126da00b91952
+2	2981	1751908272832491629	CMakeFiles/tests.dir/tests/test_main.cpp.o	2faaed5b1596dfa9
+2	3491	1751908272832491629	CMakeFiles/tests.dir/tests/test_fraction.cpp.o	4bd20495dfc20e7f
+3491	3750	1751908276320526096	tests	aaa298852acc0877
+3	3026	1751908457934375736	CMakeFiles/tests.dir/tests/test_fraction.cpp.o	4bd20495dfc20e7f
+3026	3237	1751908460958407249	tests	aaa298852acc0877
+8	1506	1751908794487786462	CMakeFiles/tests.dir/src/Fraction.cpp.o	5f3126da00b91952
+7	3020	1751908794487786462	CMakeFiles/tests.dir/tests/test_fraction.cpp.o	4bd20495dfc20e7f
+3020	3230	1751908797499739716	tests	aaa298852acc0877
+4	4061	1751908830855247925	CMakeFiles/tests.dir/tests/test_fraction.cpp.o	4bd20495dfc20e7f
+4061	4293	1751908834915191224	tests	aaa298852acc0877
+3	1501	1751909054936989437	CMakeFiles/tests.dir/src/Fraction.cpp.o	5f3126da00b91952
+1501	1722	1751909056432979524	tests	aaa298852acc0877
+4	1622	1751909093916749804	CMakeFiles/tests.dir/src/Fraction.cpp.o	5f3126da00b91952
+3	3039	1751909093916749804	CMakeFiles/tests.dir/tests/test_fraction.cpp.o	4bd20495dfc20e7f
+3039	3258	1751909096952732731	tests	aaa298852acc0877
