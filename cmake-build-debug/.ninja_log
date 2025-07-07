@@ -1,8 +1,16 @@
 # ninja log v6
 4	1622	1751909093916749804	CMakeFiles/tests.dir/src/Fraction.cpp.o	5f3126da00b91952
 2	2981	1751908272832491629	CMakeFiles/tests.dir/tests/test_main.cpp.o	2faaed5b1596dfa9
-3	2189	1751911668680764818	build.ninja	987febbd8cf80e9
+3	2189	1751912157791977584	build.ninja	987febbd8cf80e9
 5	2806	1751909844496954675	CMakeFiles/tests.dir/tests/test_fraction.cpp.o	4bd20495dfc20e7f
 806	954	1751899218603008212	sqrt_higher_precision	f11af3d351234e3e
 2	805	1751899217799010289	CMakeFiles/sqrt_higher_precision.dir/src/main.cpp.o	fa78d43de96781e8
 2806	3017	1751909847296965726	tests	aaa298852acc0877
+8	3290	1751912979754511207	_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o	2f55321897389349
+9	3402	1751912979754511207	CMakeFiles/tests.dir/tests/test_main.cpp.o	1e6c51daf976c9b7
+3403	5540	1751912983146386994	CMakeFiles/tests.dir/src/Fraction.cpp.o	3ba60287f76f7835
+3291	6861	1751912983034391081	CMakeFiles/tests.dir/tests/test_fraction.cpp.o	f1589e1738c4b19f
+7	10248	1751912979750511354	_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o	d00f7d6279530ff5
+10248	10716	1751912989994138331	lib/libgtest.a	420031dcbb4fe737
+10716	10768	1751912990462121446	lib/libgtest_main.a	ea3b56fc783a9b5a
+10768	11053	1751912990514119570	tests	5f187e4824253ce3

@@ -19,6 +19,8 @@ class Fraction {
 		void simplify();
 		void normalize_sign();
 
+		[[nodiscard]] Fraction pow(int n) const;
+
 		Fraction operator+(const Fraction& other) const;
 		Fraction operator-(const Fraction& other) const;
 		Fraction operator*(const Fraction& other) const;

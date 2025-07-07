@@ -4,6 +4,8 @@
 #include <utility>
 #include <vector>
 
+Fraction::Fraction(const int numerator) : num(numerator) {}
+
 Fraction::Fraction(const std::string& numerator, const std::string& denominator)
     : num(numerator), den(denominator) {
     simplify();
@@ -64,6 +66,30 @@ Fraction Fraction::operator+(const Fraction& other) const {
     const mpz_class d = den * other.den;
     return {n, d};
 }
+
+Fraction& Fraction::operator+=(const Fraction& other) {
+    num = num * other.den + other.num * den;
+    den = den * other.den;
+    simplify();
+    return *this;
+}
+
+Fraction Fraction::pow(int n) const {
+    if (n == 0) return Fraction(1);
+
+    mpz_class new_num, new_den;
+
+    if (n > 0) {
+        mpz_pow_ui(new_num.get_mpz_t(), num.get_mpz_t(), n);
+        mpz_pow_ui(new_den.get_mpz_t(), den.get_mpz_t(), n);
+    } else {
+        mpz_pow_ui(new_num.get_mpz_t(), den.get_mpz_t(), -n);
+        mpz_pow_ui(new_den.get_mpz_t(), num.get_mpz_t(), -n);
+    }
+
+    return {new_num, new_den};
+}
+
 
 Fraction Fraction::operator-(const Fraction& other) const {
     const mpz_class n = num * other.den - other.num * den;
