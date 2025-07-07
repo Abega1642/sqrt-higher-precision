@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/sqrt_higher_precision.dir/src/main.cpp.o -o sqrt_higher_precision  vcpkg_installed/x64-linux/debug/lib/libmpfr.a vcpkg_installed/x64-linux/debug/lib/libgmp.a
