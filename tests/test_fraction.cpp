@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
 #include <gmpxx.h>
+#include <mpfr.h>
+
 #include "../include/Fraction.hpp"
 
 class FractionTest : public ::testing::Test {
@@ -53,10 +55,23 @@ TEST_F(FractionTest, DivisionWorks) {
 
 TEST_F(FractionTest, DecimalConversionIsAccurate) {
 	const std::string decimal = f1.get_value(50);
-	const double approx = std::stod(decimal);
-	constexpr double expected = 2.0 / 3.0;
-	EXPECT_NEAR(approx, expected, 1e-12);
+
+	mpfr_t actual, expected;
+	mpfr_init2(actual, 256);
+	mpfr_init2(expected, 256);
+
+	mpfr_set_str(actual, decimal.c_str(), 10, MPFR_RNDN);
+	mpfr_set_d(expected, 2.0 / 3.0, MPFR_RNDN);
+
+	mpfr_sub(actual, actual, expected, MPFR_RNDN);
+	mpfr_abs(actual, actual, MPFR_RNDN);
+
+	EXPECT_TRUE(mpfr_cmp_d(actual, 1e-15) < 0);
+
+	mpfr_clear(actual);
+	mpfr_clear(expected);
 }
+
 
 TEST_F(FractionTest, ZeroFractionBehavesCorrectly) {
 	Fraction zero = f4;

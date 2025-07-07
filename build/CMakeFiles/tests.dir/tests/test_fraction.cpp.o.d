@@ -311,4 +311,5 @@ CMakeFiles/tests.dir/tests/test_fraction.cpp.o: \
  /usr/include/c++/12/pstl/glue_algorithm_defs.h \
  /usr/include/c++/12/cfloat \
  /home/abega/Documents/Computer_Science_works/sqrt-higher-precision/build/vcpkg_installed/x64-linux/include/gmp.h \
+ /home/abega/Documents/Computer_Science_works/sqrt-higher-precision/build/vcpkg_installed/x64-linux/include/mpfr.h \
  /home/abega/Documents/Computer_Science_works/sqrt-higher-precision/tests/../include/Fraction.hpp

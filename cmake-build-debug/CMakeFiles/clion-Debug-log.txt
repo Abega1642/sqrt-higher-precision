@@ -37,8 +37,8 @@ The package mpfr can be imported via CMake FindPkgConfig module:
     
     target_link_libraries(main PRIVATE PkgConfig::mpfr)
 
-All requested installations completed successfully in: 202 us
+All requested installations completed successfully in: 136 us
 -- Running vcpkg install - done
--- Configuring done (3.9s)
--- Generating done (0.1s)
+-- Configuring done (2.4s)
+-- Generating done (0.0s)
 -- Build files have been written to: /home/abega/Documents/Computer_Science_works/sqrt-higher-precision/cmake-build-debug

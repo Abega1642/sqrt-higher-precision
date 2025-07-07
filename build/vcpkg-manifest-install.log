@@ -1,38 +1,12 @@
 Detecting compiler hash for triplet x64-linux...
 Compiler found: /usr/bin/c++
-The following packages will be built and installed:
+The following packages are already installed:
     gmp:x64-linux@6.3.0#2
     gtest:x64-linux@1.17.0#1
     mpfr:x64-linux@4.2.2
   * vcpkg-cmake:x64-linux@2024-04-23
   * vcpkg-cmake-config:x64-linux@2024-05-23
   * vcpkg-cmake-get-vars:x64-linux@2025-05-29
-Additional packages (*) will be modified to complete this operation.
-Restored 6 package(s) from /home/abega/.cache/vcpkg/archives in 115 ms. Use --debug to see more details.
-Installing 1/6 vcpkg-cmake:x64-linux@2024-04-23...
-Elapsed time to handle vcpkg-cmake:x64-linux: 931 us
-vcpkg-cmake:x64-linux package ABI: f2f292be0935a5ce7943c5a3de03e771b1572a22a4f92b6c91fd5fc678dd7b07
-Installing 2/6 vcpkg-cmake-get-vars:x64-linux@2025-05-29...
-Elapsed time to handle vcpkg-cmake-get-vars:x64-linux: 874 us
-vcpkg-cmake-get-vars:x64-linux package ABI: 78a960de8639d87653d83312ee835a23f9fddb7a81d4bc9492a5ebc1bb379477
-Installing 3/6 gmp:x64-linux@6.3.0#2...
-Elapsed time to handle gmp:x64-linux: 1.47 ms
-gmp:x64-linux package ABI: 83a233ffba0da1a74e600633d0a28d6cffd1559f9563e7f76e56f172858c6712
-Installing 4/6 vcpkg-cmake-config:x64-linux@2024-05-23...
-Elapsed time to handle vcpkg-cmake-config:x64-linux: 781 us
-vcpkg-cmake-config:x64-linux package ABI: dd348bb51b0c0de1eecd461d93206a6564cc7dfb1c854ee01b5a82a4758a6551
-Installing 5/6 gtest:x64-linux@1.17.0#1...
-Elapsed time to handle gtest:x64-linux: 2.27 ms
-gtest:x64-linux package ABI: d1b49d505230d41e8b6c08d05a16bab417b6e8d1c462d5fb490edb8104db312d
-Installing 6/6 mpfr:x64-linux@4.2.2...
-Elapsed time to handle mpfr:x64-linux: 1.13 ms
-mpfr:x64-linux package ABI: a5107097890c4c7d03176b13ad91dba4e6800610a5895896d8cd40a20098ed69
-Installed contents are licensed to you by owners. Microsoft is not responsible for, nor does it grant any licenses to, third-party packages.
-Packages installed in this vcpkg installation declare the following licenses:
-(LGPL-3.0-only OR GPL-2.0-only)
-BSD-3-Clause
-LGPL-3.0-or-later
-MIT
 The package gmp can be imported via CMake FindPkgConfig module:
 
     #  gmp
@@ -61,4 +35,4 @@ The package mpfr can be imported via CMake FindPkgConfig module:
     
     target_link_libraries(main PRIVATE PkgConfig::mpfr)
 
-All requested installations completed successfully in: 8.37 ms
+All requested installations completed successfully in: 282 us
