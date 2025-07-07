@@ -1,0 +1,29 @@
+#pragma once
+#include <gmpxx.h>
+#include <string>
+
+class Fraction {
+	mpz_class num;
+	mpz_class den;
+
+	public:
+		explicit Fraction(int numerator);
+		Fraction(const std::string& numerator, const std::string& denominator);
+		Fraction(const mpz_class& numerator, const mpz_class& denominator);
+
+		[[nodiscard]] std::string get_value(std::size_t decimal_digits) const;
+
+		[[nodiscard]] const mpz_class& get_num() const;
+		[[nodiscard]] const mpz_class& get_den() const;
+
+		void simplify();
+		void normalize_sign();
+
+		Fraction operator+(const Fraction& other) const;
+		Fraction operator-(const Fraction& other) const;
+		Fraction operator*(const Fraction& other) const;
+		Fraction operator/(const Fraction& other) const;
+		Fraction& operator+=(const Fraction& other);
+		friend std::ostream& operator<<(std::ostream& os, const Fraction& frac);
+
+};
