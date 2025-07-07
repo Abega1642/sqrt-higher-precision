@@ -7,7 +7,7 @@ class Fraction {
 	mpz_class den;
 
 	public:
-		explicit Fraction(int numerator);
+		explicit Fraction(long numerator);
 		Fraction(const std::string& numerator, const std::string& denominator);
 		Fraction(mpz_class  numerator, mpz_class  denominator);
 

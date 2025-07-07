@@ -17,7 +17,13 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 
-add_executable(sqrt_higher_precision src/main.cpp)
+add_executable(sqrt_higher_precision src/main.cpp
+        src/Sequence.cpp
+        include/Sequence.hpp
+        src/Approximator.cpp
+        include/Approximator.hpp
+        src/SquareRoot.cpp
+        include/SquareRoot.hpp)
 target_link_libraries(sqrt_higher_precision PRIVATE
         PkgConfig::GMP
         PkgConfig::MPFR

@@ -63,6 +63,20 @@ build CMakeFiles/sqrt_higher_precision.dir/src/Sequence.cpp.o: CXX_COMPILER__sqr
   OBJECT_DIR = CMakeFiles/sqrt_higher_precision.dir
   OBJECT_FILE_DIR = CMakeFiles/sqrt_higher_precision.dir/src
 
+build CMakeFiles/sqrt_higher_precision.dir/src/Approximator.cpp.o: CXX_COMPILER__sqrt_higher_precision_unscanned_Debug /home/abega/Documents/Computer_Science_works/sqrt-higher-precision/src/Approximator.cpp || cmake_object_order_depends_target_sqrt_higher_precision
+  DEP_FILE = CMakeFiles/sqrt_higher_precision.dir/src/Approximator.cpp.o.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -isystem /home/abega/Documents/Computer_Science_works/sqrt-higher-precision/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/pkgconfig/../../../include
+  OBJECT_DIR = CMakeFiles/sqrt_higher_precision.dir
+  OBJECT_FILE_DIR = CMakeFiles/sqrt_higher_precision.dir/src
+
+build CMakeFiles/sqrt_higher_precision.dir/src/SquareRoot.cpp.o: CXX_COMPILER__sqrt_higher_precision_unscanned_Debug /home/abega/Documents/Computer_Science_works/sqrt-higher-precision/src/SquareRoot.cpp || cmake_object_order_depends_target_sqrt_higher_precision
+  DEP_FILE = CMakeFiles/sqrt_higher_precision.dir/src/SquareRoot.cpp.o.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -isystem /home/abega/Documents/Computer_Science_works/sqrt-higher-precision/cmake-build-debug/vcpkg_installed/x64-linux/debug/lib/pkgconfig/../../../include
+  OBJECT_DIR = CMakeFiles/sqrt_higher_precision.dir
+  OBJECT_FILE_DIR = CMakeFiles/sqrt_higher_precision.dir/src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target sqrt_higher_precision
@@ -71,7 +85,7 @@ build CMakeFiles/sqrt_higher_precision.dir/src/Sequence.cpp.o: CXX_COMPILER__sqr
 #############################################
 # Link the executable sqrt_higher_precision
 
-build sqrt_higher_precision: CXX_EXECUTABLE_LINKER__sqrt_higher_precision_Debug CMakeFiles/sqrt_higher_precision.dir/src/main.cpp.o CMakeFiles/sqrt_higher_precision.dir/src/Sequence.cpp.o | vcpkg_installed/x64-linux/debug/lib/libmpfr.a vcpkg_installed/x64-linux/debug/lib/libgmp.a
+build sqrt_higher_precision: CXX_EXECUTABLE_LINKER__sqrt_higher_precision_Debug CMakeFiles/sqrt_higher_precision.dir/src/main.cpp.o CMakeFiles/sqrt_higher_precision.dir/src/Sequence.cpp.o CMakeFiles/sqrt_higher_precision.dir/src/Approximator.cpp.o CMakeFiles/sqrt_higher_precision.dir/src/SquareRoot.cpp.o | vcpkg_installed/x64-linux/debug/lib/libmpfr.a vcpkg_installed/x64-linux/debug/lib/libgmp.a
   FLAGS = -g
   LINK_LIBRARIES = vcpkg_installed/x64-linux/debug/lib/libmpfr.a  vcpkg_installed/x64-linux/debug/lib/libgmp.a
   OBJECT_DIR = CMakeFiles/sqrt_higher_precision.dir

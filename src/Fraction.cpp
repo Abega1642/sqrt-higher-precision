@@ -4,7 +4,7 @@
 #include <utility>
 #include <vector>
 
-Fraction::Fraction(const int numerator) : num(numerator) {}
+Fraction::Fraction(const long numerator) : num(numerator) {}
 
 Fraction::Fraction(const std::string& numerator, const std::string& denominator)
     : num(numerator), den(denominator) {
