@@ -26,6 +26,8 @@ add_executable(sqrt_higher_precision
         include/SquareRoot.hpp
         src/Fraction.cpp
         include/Fraction.hpp
+        src/FileReader.cpp
+        include/FileReader.hpp
 )
 
 target_link_libraries(sqrt_higher_precision PRIVATE
@@ -40,6 +42,8 @@ add_executable(tests
         tests/test_main.cpp
         tests/test_fraction.cpp
         src/Fraction.cpp
+        tests/test_file_reader.cpp
+        src/FileReader.cpp
 )
 
 target_link_libraries(tests PRIVATE
