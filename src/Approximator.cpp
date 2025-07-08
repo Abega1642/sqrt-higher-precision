@@ -25,7 +25,7 @@ Fraction Approximator::k_th_value(const unsigned long k) {
 		return Fraction(0);
 
 	if (k == 0)
-		return Fraction(static_cast<long>(root_value));
+		return Fraction(root_value);
 
 	if (k == 1)
 		return {root_value << 1, square_deviation};
@@ -36,7 +36,7 @@ Fraction Approximator::k_th_value(const unsigned long k) {
 
 	Fraction k_th = sqK1;
 
-	for (long i = 3; i <= k; ++i) {
+	for (unsigned long i = 3; i <= k; ++i) {
 		Fraction ratio = sqK1 / sqK2;
 		Fraction term = ratio.pow(2) + Fraction(-2);
 		k_th = sqK1 * term;

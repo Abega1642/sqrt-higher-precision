@@ -4,14 +4,19 @@
 #include <utility>
 #include <vector>
 
-Fraction::Fraction(const unsigned long numerator) : num(numerator) {}
+Fraction::Fraction(const unsigned long numerator) : num(numerator), den(1) {}
+
+Fraction::Fraction(const unsigned long numerator, const  unsigned long denominator)
+    : num(numerator), den(denominator) {
+    simplify();
+}
 
 Fraction::Fraction(const std::string& numerator, const std::string& denominator)
     : num(numerator), den(denominator) {
     simplify();
 }
 
-Fraction::Fraction(mpz_class  numerator, mpz_class  denominator)
+Fraction::Fraction(mpz_class numerator, mpz_class denominator)
     : num(std::move(numerator)), den(std::move(denominator)) {
     simplify();
 }
@@ -34,12 +39,8 @@ void Fraction::simplify() {
 }
 
 Fraction Fraction::negate() const {
-    mpz_class numerator = -num;
-    mpz_class denominator = den;
-
-    return { numerator, denominator };
+    return {-num, den};
 }
-
 
 std::string Fraction::get_value(const std::size_t decimal_digits) const {
     const auto bits = static_cast<mpfr_prec_t>(decimal_digits * 3.32193 + 100);
@@ -56,34 +57,23 @@ std::string Fraction::get_value(const std::size_t decimal_digits) const {
     std::ostringstream fmt;
     fmt << "%." << decimal_digits << "Rf";
 
-    const std::size_t buffer_size = decimal_digits + 20;
-    std::vector<char> buffer(buffer_size);
-
+    std::vector<char> buffer(decimal_digits + 20);
     mpfr_snprintf(buffer.data(), buffer.size(), fmt.str().c_str(), result);
 
     mpfr_clears(mp_num, mp_den, result, static_cast<mpfr_ptr>(nullptr));
     return buffer.data();
 }
 
-
 const mpz_class& Fraction::get_num() const { return num; }
 const mpz_class& Fraction::get_den() const { return den; }
 
-
 Fraction Fraction::inverse() const {
-    if (num < 0) throw std::invalid_argument("Cannot inverse a fraction with zero as numerator");
-
-    const mpz_class numerator = den;
-    const mpz_class denominator = num;
-
-    return {numerator, denominator};
+    if (num == 0) throw std::invalid_argument("Cannot invert a zero fraction");
+    return {den, num};
 }
 
-
 Fraction Fraction::operator+(const Fraction& other) const {
-    const mpz_class n = num * other.den + other.num * den;
-    const mpz_class d = den * other.den;
-    return {n, d};
+    return {num * other.den + other.num * den, den * other.den};
 }
 
 Fraction& Fraction::operator+=(const Fraction& other) {
@@ -93,11 +83,10 @@ Fraction& Fraction::operator+=(const Fraction& other) {
     return *this;
 }
 
-Fraction Fraction::pow(int n) const {
-    if (n == 0) return Fraction(1);
+Fraction Fraction::pow(const int n) const {
+    if (n == 0) return Fraction(1UL);
 
     mpz_class new_num, new_den;
-
     if (n > 0) {
         mpz_pow_ui(new_num.get_mpz_t(), num.get_mpz_t(), n);
         mpz_pow_ui(new_den.get_mpz_t(), den.get_mpz_t(), n);
@@ -109,11 +98,8 @@ Fraction Fraction::pow(int n) const {
     return {new_num, new_den};
 }
 
-
 Fraction Fraction::operator-(const Fraction& other) const {
-    const mpz_class n = num * other.den - other.num * den;
-    const mpz_class d = den * other.den;
-    return {n, d};
+    return {num * other.den - other.num * den, den * other.den};
 }
 
 Fraction Fraction::operator*(const Fraction& other) const {
@@ -124,7 +110,11 @@ Fraction Fraction::operator/(const Fraction& other) const {
     return {num * other.den, den * other.num};
 }
 
-std::ostream& operator<<(std::ostream& os, const Fraction& fraction) {
-    os << fraction.num << "/" << fraction.den;
+std::ostream& operator<<(std::ostream& os, const Fraction& frac) {
+    const mpz_class numerator = frac.num;
+    const mpz_class denominator = frac.den;
+    os << numerator << "/" << denominator;
     return os;
 }
+
+

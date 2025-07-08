@@ -3,9 +3,9 @@ project(sqrt_higher_precision)
 
 set(CMAKE_CXX_STANDARD 20)
 
-
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GMP REQUIRED IMPORTED_TARGET gmp)
+pkg_check_modules(GMPXX REQUIRED IMPORTED_TARGET gmpxx)
 pkg_check_modules(MPFR REQUIRED IMPORTED_TARGET mpfr)
 
 include(FetchContent)
@@ -16,16 +16,21 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-
-add_executable(sqrt_higher_precision src/main.cpp
+add_executable(sqrt_higher_precision
+        src/main.cpp
         src/Sequence.cpp
         include/Sequence.hpp
         src/Approximator.cpp
         include/Approximator.hpp
         src/SquareRoot.cpp
-        include/SquareRoot.hpp)
+        include/SquareRoot.hpp
+        src/Fraction.cpp
+        include/Fraction.hpp
+)
+
 target_link_libraries(sqrt_higher_precision PRIVATE
         PkgConfig::GMP
+        PkgConfig::GMPXX
         PkgConfig::MPFR
 )
 
@@ -41,9 +46,8 @@ target_link_libraries(tests PRIVATE
         gtest
         gtest_main
         PkgConfig::GMP
+        PkgConfig::GMPXX
         PkgConfig::MPFR
-        gmpxx
-        gmp
         pthread
 )
 
