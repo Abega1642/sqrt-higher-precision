@@ -18,10 +18,6 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(sqrt_higher_precision
         src/main.cpp
-        src/Sequence.cpp
-        include/Sequence.hpp
-        src/Approximator.cpp
-        include/Approximator.hpp
         src/SquareRoot.cpp
         include/SquareRoot.hpp
         src/Fraction.cpp
@@ -44,6 +40,9 @@ add_executable(tests
         src/Fraction.cpp
         tests/test_file_reader.cpp
         src/FileReader.cpp
+        src/SquareRoot.cpp
+        tests/test_sqrt.cpp
+        tests/test_bench_marks.cpp
 )
 
 target_link_libraries(tests PRIVATE
