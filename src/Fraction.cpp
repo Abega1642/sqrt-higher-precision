@@ -4,6 +4,10 @@
 #include <utility>
 #include <vector>
 
+const Fraction Fraction::ZERO(0UL);
+const Fraction Fraction::ONE(1UL);
+const Fraction Fraction::TWO(2UL);
+
 Fraction::Fraction(const unsigned long numerator) : num(numerator), den(1) {}
 
 Fraction::Fraction(const unsigned long numerator, const  unsigned long denominator)
@@ -41,6 +45,11 @@ void Fraction::simplify() {
 Fraction Fraction::negate() const {
     return {-num, den};
 }
+
+Fraction Fraction::neg_reciprocal() const {
+    return {-den, num};
+}
+
 
 std::string Fraction::get_value(const std::size_t decimal_digits) const {
     const auto bits = static_cast<mpfr_prec_t>(decimal_digits * 3.32193 + 100);
@@ -83,7 +92,11 @@ Fraction& Fraction::operator+=(const Fraction& other) {
     return *this;
 }
 
-Fraction Fraction::pow(const int n) const {
+Fraction Fraction::square() const {
+    return {num * num, den * den};
+}
+
+Fraction Fraction::pow(const long n) const {
     if (n == 0) return Fraction(1UL);
 
     mpz_class new_num, new_den;

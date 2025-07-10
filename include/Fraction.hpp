@@ -8,29 +8,35 @@ class Fraction {
 	mpz_class den;
 
 	public:
-	explicit Fraction(unsigned long numerator);
-	Fraction(unsigned long numerator, unsigned long denominator);
-	Fraction(const std::string& numerator, const std::string& denominator);
-	Fraction(mpz_class numerator, mpz_class denominator);
+		static const Fraction ZERO;
+		static const Fraction ONE;
+		static const Fraction TWO;
 
-	[[nodiscard]] std::string get_value(std::size_t decimal_digits) const;
+		explicit Fraction(unsigned long numerator);
+		Fraction(unsigned long numerator, unsigned long denominator);
+		Fraction(const std::string& numerator, const std::string& denominator);
+		Fraction(mpz_class numerator, mpz_class denominator);
 
-	[[nodiscard]] const mpz_class& get_num() const;
-	[[nodiscard]] const mpz_class& get_den() const;
+		[[nodiscard]] std::string get_value(std::size_t decimal_digits) const;
 
-	void simplify();
-	void normalize_sign();
+		[[nodiscard]] const mpz_class& get_num() const;
+		[[nodiscard]] const mpz_class& get_den() const;
 
-	[[nodiscard]] Fraction inverse() const;
-	[[nodiscard]] Fraction negate() const;
-	[[nodiscard]] Fraction pow(int n) const;
+		void simplify();
+		void normalize_sign();
 
-	Fraction operator+(const Fraction& other) const;
-	Fraction operator-(const Fraction& other) const;
-	Fraction operator*(const Fraction& other) const;
-	Fraction operator/(const Fraction& other) const;
-	Fraction& operator+=(const Fraction& other);
+		[[nodiscard]] Fraction inverse() const;
+		[[nodiscard]] Fraction negate() const;
+		[[nodiscard]] Fraction neg_reciprocal() const;
+		[[nodiscard]] Fraction square() const;
+		[[nodiscard]] Fraction pow(long n) const;
 
-	friend std::ostream& operator<<(std::ostream& os, const Fraction& frac);
+		Fraction operator+(const Fraction& other) const;
+		Fraction operator-(const Fraction& other) const;
+		Fraction operator*(const Fraction& other) const;
+		Fraction operator/(const Fraction& other) const;
+		Fraction& operator+=(const Fraction& other);
+
+		friend std::ostream& operator<<(std::ostream& os, const Fraction& frac);
 
 };
