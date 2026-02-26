@@ -23,3 +23,22 @@ TEST(SquareRootTest, Sqrt2With6000000DigitsAtK23) {
 
   EXPECT_EQ(expected, actual);
 }
+
+TEST(SquareRootTest, Sqrt3With6000000DigitsAtK22) {
+  constexpr unsigned long target = 3UL;
+  ;
+  constexpr unsigned long k = 19UL;
+  constexpr std::size_t precision_digits = 1'000'0002;
+  constexpr std::size_t truncate_to = 1'000'000;
+  const std::string data_path = "../data/sqrt_3.txt";
+
+  const SquareRoot subject = SquareRoot::of(target);
+  const Fraction result = subject.k_th_value(k);
+  const std::string actual =
+      result.get_value(precision_digits).substr(0, truncate_to);
+
+  const FileReader reader(data_path);
+  const std::string expected = reader.read_all().substr(0, truncate_to);
+
+  EXPECT_EQ(expected, actual);
+}

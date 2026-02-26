@@ -2,3 +2,4 @@
 buildcmake-build-debug/
 build
 vcpkg_installed/
+cmake-build-debug-test/

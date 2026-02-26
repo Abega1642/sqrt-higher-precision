@@ -73,3 +73,34 @@ TEST(SquareRootBenchmark,
 
   SUCCEED();
 }
+/*
+*[Benchmark of SquareRoot::k_th_value]  - Decimal Form
+         - nat			= 3,
+         - k			= 19,
+         - Precision	= 1000002 decimal digits,
+         - Duration		= 1.36298 seconds
+ *
+ **
+ *
+ */
+TEST(SquareRootBenchmark,
+     TimeExecutionOf19thValueComputationWithSixMillionPreisionOf3) {
+  constexpr unsigned long target = 3UL;
+  constexpr unsigned long k = 19UL;
+  constexpr std::size_t precision_digits = 1'000'002;
+
+  const SquareRoot subject = SquareRoot::of(target);
+
+  const auto start = std::chrono::high_resolution_clock::now();
+
+  const std::string result = subject.k_th_value(k).get_value(precision_digits);
+
+  const auto end = std::chrono::high_resolution_clock::now();
+
+  const std::chrono::duration<double> elapsed_seconds = end - start;
+
+  show_result("Decimal Form", subject.get_nat(), k, precision_digits,
+              elapsed_seconds.count());
+
+  SUCCEED();
+}
