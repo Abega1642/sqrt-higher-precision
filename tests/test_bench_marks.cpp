@@ -15,12 +15,12 @@ void show_result(const std::string& title, const unsigned long nat,
             << ",\n\t - Duration\t\t= " << time << " seconds" << std::endl;
 }
 
-/*
-* [Benchmark of SquareRoot::k_th_value] - Fraction Form
+/**
+[Benchmark of SquareRoot::k_th_value] - Fraction Form
          - nat			= 2,
          - k			= 22,
          - Precision	= 6000002 decimal digits,
-         - Duration		= 7.79397 seconds
+         - Duration		= 1.15823 seconds
  */
 
 TEST(SquareRootBenchmark, TimeExecutionOfKthValueComputation) {
@@ -44,12 +44,12 @@ TEST(SquareRootBenchmark, TimeExecutionOfKthValueComputation) {
   SUCCEED();
 }
 
-/*
-* [Benchmark of SquareRoot::k_th_value] - Decimal Form
+/**
+[Benchmark of SquareRoot::k_th_value] - Decimal Form
          - nat			= 2,
          - k			= 22,
          - Precision	= 6000002 decimal digits,
-         - Duration		= 10.2902 seconds
+         - Duration		= 3.4826 seconds
  */
 
 TEST(SquareRootBenchmark,
@@ -73,21 +73,105 @@ TEST(SquareRootBenchmark,
 
   SUCCEED();
 }
-/*
-*[Benchmark of SquareRoot::k_th_value]  - Decimal Form
+/**
+[Benchmark of SquareRoot::k_th_value]  - Decimal Form
          - nat			= 3,
          - k			= 19,
          - Precision	= 1000002 decimal digits,
-         - Duration		= 1.36298 seconds
- *
- **
- *
+         - Duration		= 0.472154 seconds
  */
 TEST(SquareRootBenchmark,
      TimeExecutionOf19thValueComputationWithSixMillionPreisionOf3) {
   constexpr unsigned long target = 3UL;
   constexpr unsigned long k = 19UL;
   constexpr std::size_t precision_digits = 1'000'002;
+
+  const SquareRoot subject = SquareRoot::of(target);
+
+  const auto start = std::chrono::high_resolution_clock::now();
+
+  const std::string result = subject.k_th_value(k).get_value(precision_digits);
+
+  const auto end = std::chrono::high_resolution_clock::now();
+
+  const std::chrono::duration<double> elapsed_seconds = end - start;
+
+  show_result("Decimal Form", subject.get_nat(), k, precision_digits,
+              elapsed_seconds.count());
+
+  SUCCEED();
+}
+
+/**
+[Benchmark of SquareRoot::k_th_value]  - Decimal Form
+         - nat			= 7,
+         - k			= 19,
+         - Precision	= 1000002 decimal digits,
+         - Duration		= 0.497034 seconds
+*/
+TEST(SquareRootBenchmark,
+     TimeExecutionOf19thValueComputationWithSixMillionPreisionOf7) {
+  constexpr unsigned long target = 7UL;
+  constexpr unsigned long k = 19UL;
+  constexpr std::size_t precision_digits = 1'000'002;
+
+  const SquareRoot subject = SquareRoot::of(target);
+
+  const auto start = std::chrono::high_resolution_clock::now();
+
+  const std::string result = subject.k_th_value(k).get_value(precision_digits);
+
+  const auto end = std::chrono::high_resolution_clock::now();
+
+  const std::chrono::duration<double> elapsed_seconds = end - start;
+
+  show_result("Decimal Form", subject.get_nat(), k, precision_digits,
+              elapsed_seconds.count());
+
+  SUCCEED();
+}
+
+/**
+[Benchmark of SquareRoot::k_th_value]  - Decimal Form
+         - nat			= 5,
+         - k			= 19,
+         - Precision	= 1000002 decimal digits,
+         - Duration		= 0.416297 seconds
+ */
+TEST(SquareRootBenchmark,
+     TimeExecutionOf19thValueComputationWithSixMillionPreisionOf5) {
+  constexpr unsigned long target = 5UL;
+  constexpr unsigned long k = 19UL;
+  constexpr std::size_t precision_digits = 1'000'002;
+
+  const SquareRoot subject = SquareRoot::of(target);
+
+  const auto start = std::chrono::high_resolution_clock::now();
+
+  const std::string result = subject.k_th_value(k).get_value(precision_digits);
+
+  const auto end = std::chrono::high_resolution_clock::now();
+
+  const std::chrono::duration<double> elapsed_seconds = end - start;
+
+  show_result("Decimal Form", subject.get_nat(), k, precision_digits,
+              elapsed_seconds.count());
+
+  SUCCEED();
+}
+
+/**
+[Benchmark of SquareRoot::k_th_value]  - Decimal Form
+         - nat			= 2,
+         - k			= 24,
+         - Precision	= 10000002 decimal digits,
+         - Duration		= 10.3316 seconds
+ */
+TEST(SquareRootBenchmark,
+     TimeExecutionOf24thValueComputationWithTenMillionPreisionOfSqrtOf2) {
+  constexpr unsigned long target = 2UL;
+  constexpr unsigned long k = 24UL;
+  constexpr std::size_t precision_digits = 10'000'002;
 
   const SquareRoot subject = SquareRoot::of(target);
 
