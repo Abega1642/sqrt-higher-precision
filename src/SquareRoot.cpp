@@ -35,7 +35,7 @@ Fraction SquareRoot::k_th_value(const unsigned long k) const {
 
   const unsigned long sd_squared = square_deviation * square_deviation;
 
-  Fraction curr((root_value * root_sq_plus_n) << 2, sd_squared);
+  Fraction curr(root_value * root_sq_plus_n << 2, sd_squared);
   Fraction result = base + prev.neg_reciprocal() + curr.neg_reciprocal();
 
   if (k == 1) return result;

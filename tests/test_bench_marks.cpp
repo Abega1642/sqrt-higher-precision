@@ -20,7 +20,7 @@ void show_result(const std::string& title, const unsigned long nat,
          - nat			= 2,
          - k			= 22,
          - Precision	= 6000002 decimal digits,
-         - Duration		= 1.15823 seconds
+         - Duration		= 1.01156 seconds
  */
 
 TEST(SquareRootBenchmark, TimeExecutionOfKthValueComputation) {
@@ -49,7 +49,7 @@ TEST(SquareRootBenchmark, TimeExecutionOfKthValueComputation) {
          - nat			= 2,
          - k			= 22,
          - Precision	= 6000002 decimal digits,
-         - Duration		= 3.4826 seconds
+         - Duration		= 3.06032 seconds
  */
 
 TEST(SquareRootBenchmark,
@@ -78,7 +78,7 @@ TEST(SquareRootBenchmark,
          - nat			= 3,
          - k			= 19,
          - Precision	= 1000002 decimal digits,
-         - Duration		= 0.472154 seconds
+         - Duration		= 0.414324 seconds
  */
 TEST(SquareRootBenchmark,
      TimeExecutionOf19thValueComputationWithSixMillionPreisionOf3) {
@@ -107,7 +107,7 @@ TEST(SquareRootBenchmark,
          - nat			= 7,
          - k			= 19,
          - Precision	= 1000002 decimal digits,
-         - Duration		= 0.497034 seconds
+         - Duration		= 0.434439 seconds
 */
 TEST(SquareRootBenchmark,
      TimeExecutionOf19thValueComputationWithSixMillionPreisionOf7) {
@@ -136,7 +136,7 @@ TEST(SquareRootBenchmark,
          - nat			= 5,
          - k			= 19,
          - Precision	= 1000002 decimal digits,
-         - Duration		= 0.416297 seconds
+         - Duration		= 0.388175 seconds
  */
 TEST(SquareRootBenchmark,
      TimeExecutionOf19thValueComputationWithSixMillionPreisionOf5) {
@@ -165,7 +165,7 @@ TEST(SquareRootBenchmark,
          - nat			= 2,
          - k			= 24,
          - Precision	= 10000002 decimal digits,
-         - Duration		= 10.3316 seconds
+         - Duration		= 8.75233 seconds
  */
 TEST(SquareRootBenchmark,
      TimeExecutionOf24thValueComputationWithTenMillionPreisionOfSqrtOf2) {
