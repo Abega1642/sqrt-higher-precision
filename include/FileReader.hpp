@@ -3,9 +3,9 @@
 
 class FileReader {
  public:
-  explicit FileReader(std::string filename);
+  explicit FileReader(std::string path);
   [[nodiscard]] std::string read_all() const;
 
  private:
-  std::string filename;
+  std::string path_;
 };

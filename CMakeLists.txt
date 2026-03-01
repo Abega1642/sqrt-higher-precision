@@ -46,6 +46,10 @@ add_executable(tests
         tests/test_bench_marks_2.cpp
 )
 
+target_compile_definitions(tests PRIVATE
+        PROJECT_SOURCE_DIR="${CMAKE_SOURCE_DIR}"
+)
+
 target_link_libraries(tests PRIVATE
         gtest
         gtest_main

@@ -8,10 +8,10 @@ IFS=$'\n\t'
 # binary, then restores all system settings unconditionally via a trap.
 #
 # Usage:
-#   sudo ./.shell/bench-marks.sh <path-to-built-test-binary>
+#   sudo .shell/bench-marks.sh <path-to-built-test-binary>
 #
 # Example:
-#   sudo ./.shell/bench-marks.sh ./build/tests
+#   sudo .shell/bench-marks.sh ./build/tests
 # ---------------------------------------------------------------------------
 
 readonly BENCHMARK_CORE=2
@@ -41,8 +41,9 @@ if [[ ! -x "${BINARY}" ]]; then
 	exit 1
 fi
 
-readonly CPU_COUNT
+declare CPU_COUNT
 CPU_COUNT=$(nproc)
+readonly CPU_COUNT
 
 if [[ "${BENCHMARK_CORE}" -ge "${CPU_COUNT}" ]]; then
 	echo "Error: BENCHMARK_CORE=${BENCHMARK_CORE} but only ${CPU_COUNT} CPUs available." >&2
@@ -59,14 +60,17 @@ for ((i = 0; i < CPU_COUNT; i++)); do
 	ORIGINAL_MAX_FREQS+=("$(cat "/sys/devices/system/cpu/cpu${i}/cpufreq/scaling_max_freq" 2>/dev/null || echo "")")
 done
 
-readonly ORIGINAL_ASLR
+declare ORIGINAL_ASLR
 ORIGINAL_ASLR=$(cat /proc/sys/kernel/randomize_va_space)
+readonly ORIGINAL_ASLR
 
-readonly ORIGINAL_INTEL_TURBO
+declare ORIGINAL_INTEL_TURBO
 ORIGINAL_INTEL_TURBO=$(cat /sys/devices/system/cpu/intel_pstate/no_turbo 2>/dev/null || echo "")
+readonly ORIGINAL_INTEL_TURBO
 
-readonly ORIGINAL_AMD_BOOST
+declare ORIGINAL_AMD_BOOST
 ORIGINAL_AMD_BOOST=$(cat /sys/devices/system/cpu/cpufreq/boost 2>/dev/null || echo "")
+readonly ORIGINAL_AMD_BOOST
 
 restore_system() {
 	echo ""

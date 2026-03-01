@@ -15,7 +15,6 @@ namespace {
 
 struct Stats {
   double min_s;
-  double median_s;
   double mean_s;
   double max_s;
   double stddev_s;
@@ -48,9 +47,11 @@ Stats measure(Fn&& fn, const int reps) {
   }
   const double stddev = std::sqrt(sq_sum / static_cast<double>(reps));
 
-  return {times.front(), times[reps / 2],
-          mean,          times.back(),
-          stddev,        (mean > 0.0 ? stddev / mean * 100.0 : 0.0),
+  return {times.front(),
+          mean,
+          times.back(),
+          stddev,
+          (mean > 0.0 ? stddev / mean * 100.0 : 0.0),
           reps};
 }
 
@@ -64,8 +65,7 @@ void print_stats(const std::string& label, const unsigned long nat,
             << "  precision       = " << precision_digits << " digits\n"
             << "  reps            = " << s.reps << " (+ 1 warmup discarded)\n"
             << std::fixed << std::setprecision(6)
-            << "  min             = " << std::setw(w) << s.min_s << " s\n"
-            << "  median          = " << std::setw(w) << s.median_s
+            << "  min             = " << std::setw(w) << s.min_s
             << " s  <-- REFERENCE VALUE\n"
             << "  mean            = " << std::setw(w) << s.mean_s << " s\n"
             << "  max             = " << std::setw(w) << s.max_s << " s\n"
@@ -74,7 +74,7 @@ void print_stats(const std::string& label, const unsigned long nat,
             << " %\n";
 
   if (s.cv_pct > 5.0) {
-    std::cout << "  [WARNING] cv > 5% -- numbers are unreliable.\n"
+    std::cout << "  [WARNING] cv > 5% -- environment is not stable.\n"
               << "            Run via: sudo ./.shell/bench-marks.sh <binary>\n";
   }
 }
