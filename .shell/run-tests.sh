@@ -2,9 +2,15 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-declare -r SCRIPT_DIR
+declare SCRIPT_DIR
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-readonly BUILD_DIR="${SCRIPT_DIR}/build"
+readonly SCRIPT_DIR
+
+declare PROJECT_DIR
+PROJECT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+readonly PROJECT_DIR
+
+readonly BUILD_DIR="${PROJECT_DIR}/build"
 readonly BINARY="${BUILD_DIR}/tests"
 
 readonly COLOR_RESET='\033[0m'
