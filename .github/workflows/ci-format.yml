@@ -1,33 +1,35 @@
-name: C++ Google Format
-
+name: CI - Format
 on:
   push:
     branches:
-      - '**'
+      - "**"
   pull_request:
     branches:
-      - '**'
-
+      - "**"
+permissions:
+  contents: read
 jobs:
   format:
+    name: Verify code formatting
     runs-on: ubuntu-latest
-
+    timeout-minutes: 10
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-
+        uses: actions/checkout@v4
       - name: Install clang-format
-        run: sudo apt update && sudo apt install -y clang-format
-
-      - name: Run project formatting script
-        run: ./format.sh
-
-      - name: Check for formatting changes
         run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends clang-format
+      - name: Make format script executable
+        run: chmod +x ./format.sh
+      - name: Run formatting script
+        run: ./format.sh
+      - name: Check for formatting changes
+        run: |-
           if ! git diff --quiet; then
-            echo "❌ Formatting issues found. Please run ./format_google_cpp.sh locally and commit."
+            echo "Formatting violations detected. Run ./format.sh locally and commit the result."
+            echo ""
             git diff
             exit 1
-          else
-            echo "✅ All files are correctly formatted."
           fi
+          echo "All files comply with Google C++ style."

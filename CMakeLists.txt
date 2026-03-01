@@ -43,6 +43,7 @@ add_executable(tests
         src/SquareRoot.cpp
         tests/test_sqrt.cpp
         tests/test_bench_marks.cpp
+        tests/test_bench_marks_2.cpp
 )
 
 target_link_libraries(tests PRIVATE

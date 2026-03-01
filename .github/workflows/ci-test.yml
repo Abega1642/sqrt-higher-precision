@@ -1,0 +1,33 @@
+name: CI Tests
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    name: Build and run test suites
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            cmake \
+            g++ \
+            pkg-config \
+            libgmp-dev \
+            libmpfr-dev
+      - name: Configure CMake
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+      - name: Make test runner executable
+        run: chmod +x .shell/run-tests.sh
+      - name: Build and run tests
+        run: .shell/run-tests.sh
