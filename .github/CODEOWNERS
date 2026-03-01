@@ -1,0 +1,17 @@
+# Default owner (entire repository)
+* @Abega1642
+
+# CI / Automation
+.github/ @Abega1642
+.shell/
+
+
+# Build & tooling
+src/ @Abega1642
+include/ @Abega1642
+tests/ @Abega1642
+CMakeLists.txt @Abega1642
+vcpkg.json @Abega1642
+
+readme.md @Abega1642
+license @Abega1642
