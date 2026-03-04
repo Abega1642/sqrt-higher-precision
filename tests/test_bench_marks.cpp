@@ -6,13 +6,27 @@
 #include "../include/Fraction.hpp"
 #include "../include/SquareRoot.hpp"
 
-void show_result(const std::string& title, const unsigned long nat,
-                 const unsigned long range,
-                 const unsigned long precision_digits, const double time) {
-  std::cout << "[Benchmark of SquareRoot::k_th_value]  - " << title
-            << "\n\t - nat\t\t\t= " << nat << ",\n\t - k\t\t\t= " << range
-            << ",\n\t - Precision\t= " << precision_digits << " decimal digits"
-            << ",\n\t - Duration\t\t= " << time << " seconds" << std::endl;
+struct BenchmarkResult {
+  std::string title;
+  std::uint64_t nat;
+  std::uint64_t range;
+  std::uint64_t precision_digits;
+  std::chrono::duration<double> elapsed;
+};
+
+[[nodiscard]] std::string format_benchmark_result(
+    const BenchmarkResult& result) {
+  return "[Benchmark of SquareRoot::k_th_value] - " + result.title +
+         "\n\t - nat            = " + std::to_string(result.nat) +
+         "\n\t - k              = " + std::to_string(result.range) +
+         "\n\t - Precision      = " + std::to_string(result.precision_digits) +
+         " decimal digits" +
+         "\n\t - Duration       = " + std::to_string(result.elapsed.count()) +
+         " seconds";
+}
+
+void show_result(std::ostream& out, const BenchmarkResult& result) {
+  out << format_benchmark_result(result) << '\n';
 }
 
 /**
@@ -24,22 +38,23 @@ void show_result(const std::string& title, const unsigned long nat,
  */
 
 TEST(SquareRootBenchmark, TimeExecutionOfKthValueComputation) {
-  constexpr unsigned long target = 2UL;
-  constexpr unsigned long k = 22UL;
-  constexpr std::size_t precision_digits = 6'000'002;
+  constexpr std::uint64_t target = 2ULL;
+  constexpr std::uint64_t k = 22ULL;
+  constexpr std::uint64_t precision_digits = 6'000'002ULL;
 
   const SquareRoot subject = SquareRoot::of(target);
 
   const auto start = std::chrono::high_resolution_clock::now();
-
   const Fraction result = subject.k_th_value(k);
-
   const auto end = std::chrono::high_resolution_clock::now();
 
-  const std::chrono::duration<double> elapsed_seconds = end - start;
+  const std::chrono::duration<double> elapsed = end - start;
 
-  show_result("Fraction form", subject.get_nat(), k, precision_digits,
-              elapsed_seconds.count());
+  show_result(std::cout, BenchmarkResult{.title = "Fraction Form",
+                                         .nat = subject.get_nat(),
+                                         .range = k,
+                                         .precision_digits = precision_digits,
+                                         .elapsed = elapsed});
 
   SUCCEED();
 }
@@ -53,23 +68,24 @@ TEST(SquareRootBenchmark, TimeExecutionOfKthValueComputation) {
  */
 
 TEST(SquareRootBenchmark,
-     TimeExecutionOfKthValueComputationWithSixMillionPreision) {
-  constexpr unsigned long target = 2UL;
-  constexpr unsigned long k = 22UL;
-  constexpr std::size_t precision_digits = 6'000'002;
+     TimeExecutionOfKthValueComputationWithSixMillionPrecision) {
+  constexpr std::uint64_t target = 2ULL;
+  constexpr std::uint64_t k = 22ULL;
+  constexpr std::uint64_t precision_digits = 6'000'002ULL;
 
   const SquareRoot subject = SquareRoot::of(target);
 
   const auto start = std::chrono::high_resolution_clock::now();
-
   const std::string result = subject.k_th_value(k).get_value(precision_digits);
-
   const auto end = std::chrono::high_resolution_clock::now();
 
-  const std::chrono::duration<double> elapsed_seconds = end - start;
+  const std::chrono::duration<double> elapsed = end - start;
 
-  show_result("Decimal Form", subject.get_nat(), k, precision_digits,
-              elapsed_seconds.count());
+  show_result(std::cout, BenchmarkResult{.title = "Decimal Form",
+                                         .nat = subject.get_nat(),
+                                         .range = k,
+                                         .precision_digits = precision_digits,
+                                         .elapsed = elapsed});
 
   SUCCEED();
 }
@@ -80,24 +96,26 @@ TEST(SquareRootBenchmark,
          - Precision	= 1000002 decimal digits,
          - Duration		= 0.360016 seconds
  */
+
 TEST(SquareRootBenchmark,
-     TimeExecutionOf19thValueComputationWithSixMillionPreisionOf3) {
-  constexpr unsigned long target = 3UL;
-  constexpr unsigned long k = 19UL;
-  constexpr std::size_t precision_digits = 1'000'002;
+     TimeExecutionOf19thValueComputationWithOneMillionPrecisionOf3) {
+  constexpr std::uint64_t target = 3ULL;
+  constexpr std::uint64_t k = 19ULL;
+  constexpr std::uint64_t precision_digits = 1'000'002ULL;
 
   const SquareRoot subject = SquareRoot::of(target);
 
   const auto start = std::chrono::high_resolution_clock::now();
-
   const std::string result = subject.k_th_value(k).get_value(precision_digits);
-
   const auto end = std::chrono::high_resolution_clock::now();
 
-  const std::chrono::duration<double> elapsed_seconds = end - start;
+  const std::chrono::duration<double> elapsed = end - start;
 
-  show_result("Decimal Form", subject.get_nat(), k, precision_digits,
-              elapsed_seconds.count());
+  show_result(std::cout, BenchmarkResult{.title = "Decimal Form",
+                                         .nat = subject.get_nat(),
+                                         .range = k,
+                                         .precision_digits = precision_digits,
+                                         .elapsed = elapsed});
 
   SUCCEED();
 }
@@ -109,24 +127,26 @@ TEST(SquareRootBenchmark,
          - Precision	= 1000002 decimal digits,
          - Duration		= 0.370041 seconds
 */
+
 TEST(SquareRootBenchmark,
-     TimeExecutionOf19thValueComputationWithSixMillionPreisionOf7) {
-  constexpr unsigned long target = 7UL;
-  constexpr unsigned long k = 19UL;
-  constexpr std::size_t precision_digits = 1'000'002;
+     TimeExecutionOf19thValueComputationWithOneMillionPrecisionOf7) {
+  constexpr std::uint64_t target = 7ULL;
+  constexpr std::uint64_t k = 19ULL;
+  constexpr std::uint64_t precision_digits = 1'000'002ULL;
 
   const SquareRoot subject = SquareRoot::of(target);
 
   const auto start = std::chrono::high_resolution_clock::now();
-
   const std::string result = subject.k_th_value(k).get_value(precision_digits);
-
   const auto end = std::chrono::high_resolution_clock::now();
 
-  const std::chrono::duration<double> elapsed_seconds = end - start;
+  const std::chrono::duration<double> elapsed = end - start;
 
-  show_result("Decimal Form", subject.get_nat(), k, precision_digits,
-              elapsed_seconds.count());
+  show_result(std::cout, BenchmarkResult{.title = "Decimal Form",
+                                         .nat = subject.get_nat(),
+                                         .range = k,
+                                         .precision_digits = precision_digits,
+                                         .elapsed = elapsed});
 
   SUCCEED();
 }
@@ -138,24 +158,26 @@ TEST(SquareRootBenchmark,
          - Precision	= 1000002 decimal digits,
          - Duration		= 0.323097 seconds
  */
+
 TEST(SquareRootBenchmark,
-     TimeExecutionOf19thValueComputationWithSixMillionPreisionOf5) {
-  constexpr unsigned long target = 5UL;
-  constexpr unsigned long k = 19UL;
-  constexpr std::size_t precision_digits = 1'000'002;
+     TimeExecutionOf19thValueComputationWithOneMillionPrecisionOf5) {
+  constexpr std::uint64_t target = 5ULL;
+  constexpr std::uint64_t k = 19ULL;
+  constexpr std::uint64_t precision_digits = 1'000'002ULL;
 
   const SquareRoot subject = SquareRoot::of(target);
 
   const auto start = std::chrono::high_resolution_clock::now();
-
   const std::string result = subject.k_th_value(k).get_value(precision_digits);
-
   const auto end = std::chrono::high_resolution_clock::now();
 
-  const std::chrono::duration<double> elapsed_seconds = end - start;
+  const std::chrono::duration<double> elapsed = end - start;
 
-  show_result("Decimal Form", subject.get_nat(), k, precision_digits,
-              elapsed_seconds.count());
+  show_result(std::cout, BenchmarkResult{.title = "Decimal Form",
+                                         .nat = subject.get_nat(),
+                                         .range = k,
+                                         .precision_digits = precision_digits,
+                                         .elapsed = elapsed});
 
   SUCCEED();
 }
@@ -167,24 +189,26 @@ TEST(SquareRootBenchmark,
          - Precision	= 10000002 decimal digits,
          - Duration		= 8.60041 seconds
  */
+
 TEST(SquareRootBenchmark,
-     TimeExecutionOf24thValueComputationWithTenMillionPreisionOfSqrtOf2) {
-  constexpr unsigned long target = 2UL;
-  constexpr unsigned long k = 24UL;
-  constexpr std::size_t precision_digits = 10'000'002;
+     TimeExecutionOf24thValueComputationWithTenMillionPrecisionOfSqrtOf2) {
+  constexpr std::uint64_t target = 2ULL;
+  constexpr std::uint64_t k = 24ULL;
+  constexpr std::uint64_t precision_digits = 10'000'002ULL;
 
   const SquareRoot subject = SquareRoot::of(target);
 
   const auto start = std::chrono::high_resolution_clock::now();
-
   const std::string result = subject.k_th_value(k).get_value(precision_digits);
-
   const auto end = std::chrono::high_resolution_clock::now();
 
-  const std::chrono::duration<double> elapsed_seconds = end - start;
+  const std::chrono::duration<double> elapsed = end - start;
 
-  show_result("Decimal Form", subject.get_nat(), k, precision_digits,
-              elapsed_seconds.count());
+  show_result(std::cout, BenchmarkResult{.title = "Decimal Form",
+                                         .nat = subject.get_nat(),
+                                         .range = k,
+                                         .precision_digits = precision_digits,
+                                         .elapsed = elapsed});
 
   SUCCEED();
 }

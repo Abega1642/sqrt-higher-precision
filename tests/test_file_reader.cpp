@@ -5,6 +5,7 @@
 #include <string>
 
 #include "../include/FileReader.hpp"
+using namespace std::string_literals;
 
 class FileReaderTest : public ::testing::Test {
  protected:
@@ -47,7 +48,7 @@ TEST_F(FileReaderTest, ReadsFileWithSpecialCharacters) {
 }
 
 TEST_F(FileReaderTest, ReadsBinaryLikeContent) {
-  const std::string binary_data = "abc\0def\0ghi";
+  const std::string binary_data = "abc\0def\0ghi"s;
   write_temp_file(binary_data);
   const FileReader reader(temp_filename);
   const std::string result = reader.read_all();
@@ -68,9 +69,11 @@ TEST_F(FileReaderTest, ReadsLargeFile) {
 }
 
 TEST_F(FileReaderTest, ReadsWhitespaceOnlyFile) {
-  write_temp_file("   \n\t  ");
+  static constexpr std::string_view kWhitespaceContent = "   \n\t  ";
+
+  write_temp_file(kWhitespaceContent.data());
   const FileReader reader(temp_filename);
-  EXPECT_EQ(reader.read_all(), "   \n\t  ");
+  EXPECT_EQ(reader.read_all(), kWhitespaceContent);
 }
 
 TEST_F(FileReaderTest, ReadsLongLineFile) {

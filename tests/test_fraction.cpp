@@ -19,7 +19,7 @@ double measure_ms(Fn&& fn) {
 }
 
 mpz_class make_large(std::size_t digits, unsigned long offset = 1UL) {
-  std::string s(digits, '9');
+  const std::string s(digits, '9');
   mpz_class v(s, 10);
   v -= offset;
   return v;
@@ -31,7 +31,7 @@ mpz_class make_large(std::size_t digits, unsigned long offset = 1UL) {
 // Correctness
 // ---------------------------------------------------------------------------
 
-class FractionCorrectnessTest : public ::testing::Test {
+class FractionCorrectnessTest : public testing::Test {
  protected:
   const Fraction f_2_3{"4", "6"};
   const Fraction f_neg2_3{"-10", "15"};
@@ -90,8 +90,8 @@ TEST_F(FractionCorrectnessTest, AdditionCommutativity) {
 }
 
 TEST_F(FractionCorrectnessTest, AdditionAssociativity) {
-  Fraction a{"1", "6"}, b{"1", "4"}, c{"1", "3"};
-  Fraction lhs = (a + b) + c;
+  const Fraction a{"1", "6"}, b{"1", "4"}, c{"1", "3"};
+  Fraction lhs = a + b + c;
   lhs.simplify();
   Fraction rhs = a + (b + c);
   rhs.simplify();
@@ -133,8 +133,8 @@ TEST_F(FractionCorrectnessTest, MultiplicationByZero) {
 }
 
 TEST_F(FractionCorrectnessTest, MultiplicationAssociativity) {
-  Fraction a{"2", "5"}, b{"3", "7"}, c{"4", "11"};
-  Fraction lhs = (a * b) * c;
+  const Fraction a{"2", "5"}, b{"3", "7"}, c{"4", "11"};
+  Fraction lhs = a * b * c;
   lhs.simplify();
   Fraction rhs = a * (b * c);
   rhs.simplify();
@@ -143,7 +143,7 @@ TEST_F(FractionCorrectnessTest, MultiplicationAssociativity) {
 }
 
 TEST_F(FractionCorrectnessTest, Distributivity) {
-  Fraction a{"2", "3"}, b{"1", "4"}, c{"1", "5"};
+  const Fraction a{"2", "3"}, b{"1", "4"}, c{"1", "5"};
   Fraction lhs = a * (b + c);
   lhs.simplify();
   Fraction rhs = a * b + a * c;
@@ -189,7 +189,7 @@ TEST_F(FractionCorrectnessTest, CompoundAddAssignChain) {
 }
 
 TEST_F(FractionCorrectnessTest, NegatePositive) {
-  Fraction r = f_2_3.negate();
+  const Fraction r = f_2_3.negate();
   EXPECT_EQ(r.get_num(), mpz_class(-2));
   EXPECT_EQ(r.get_den(), mpz_class(3));
 }
@@ -227,7 +227,7 @@ TEST_F(FractionCorrectnessTest, InverseOfZeroThrows) {
 }
 
 TEST_F(FractionCorrectnessTest, InverseNegativeSign) {
-  Fraction neg{"-3", "4"};
+  const Fraction neg{"-3", "4"};
   Fraction r = neg.inverse();
   r.simplify();
   EXPECT_EQ(r.get_num(), mpz_class(-4));
@@ -279,7 +279,7 @@ TEST_F(FractionCorrectnessTest, PowZero) {
 }
 
 TEST_F(FractionCorrectnessTest, PowZeroNumerator) {
-  Fraction subject{"0", "12345678901234567890"};
+  const Fraction subject{"0", "12345678901234567890"};
   Fraction r = subject.pow(100000);
   r.simplify();
   EXPECT_EQ(r.get_num(), mpz_class(0));
@@ -317,8 +317,9 @@ TEST_F(FractionCorrectnessTest, NegRecipThenAddIsCorrect) {
 
 TEST_F(FractionCorrectnessTest, ChainedOpsIdentity) {
   // (a * b) / b == a  for any non-zero b
-  Fraction a{"7", "11"}, b{"13", "17"};
-  Fraction r = (a * b) / b;
+  const Fraction a{"7", "11"};
+  const Fraction b{"13", "17"};
+  Fraction r = a * b / b;
   r.simplify();
   EXPECT_EQ(r.get_num(), a.get_num());
   EXPECT_EQ(r.get_den(), a.get_den());
@@ -328,15 +329,15 @@ TEST_F(FractionCorrectnessTest, ChainedOpsIdentity) {
 // Performance
 // ---------------------------------------------------------------------------
 
-class FractionPerformanceTest : public ::testing::Test {};
+class FractionPerformanceTest : public testing::Test {};
 
 TEST_F(FractionPerformanceTest, Addition1000DigitOperands100Reps) {
   const Fraction a(make_large(1000, 3UL), make_large(1000, 7UL));
   const Fraction b(make_large(1000, 11UL), make_large(1000, 13UL));
 
-  const double ms = measure_ms([&]() {
+  const double ms = measure_ms([&] {
     for (int i = 0; i < 100; ++i) {
-      Fraction r = a + b;
+      const Fraction r = a + b;
       (void)r;
     }
   });
@@ -349,9 +350,9 @@ TEST_F(FractionPerformanceTest, Multiplication1000DigitOperands100Reps) {
   const Fraction a(make_large(1000, 3UL), make_large(1000, 7UL));
   const Fraction b(make_large(1000, 11UL), make_large(1000, 13UL));
 
-  const double ms = measure_ms([&]() {
+  const double ms = measure_ms([&] {
     for (int i = 0; i < 100; ++i) {
-      Fraction r = a * b;
+      const Fraction r = a * b;
       (void)r;
     }
   });
@@ -364,9 +365,9 @@ TEST_F(FractionPerformanceTest, Division1000DigitOperands100Reps) {
   const Fraction a(make_large(1000, 3UL), make_large(1000, 7UL));
   const Fraction b(make_large(1000, 11UL), make_large(1000, 13UL));
 
-  const double ms = measure_ms([&]() {
+  const double ms = measure_ms([&] {
     for (int i = 0; i < 100; ++i) {
-      Fraction r = a / b;
+      const Fraction r = a / b;
       (void)r;
     }
   });
@@ -382,7 +383,7 @@ TEST_F(FractionPerformanceTest, TelescopingSum10000Terms) {
   constexpr int N = 10000;
 
   Fraction acc = Fraction::ZERO;
-  const double ms = measure_ms([&]() {
+  const double ms = measure_ms([&] {
     for (int k = 1; k <= N; ++k) {
       acc += Fraction(1UL, static_cast<unsigned long>(k) *
                                static_cast<unsigned long>(k + 1));
@@ -405,7 +406,7 @@ TEST_F(FractionPerformanceTest, MultiplicationChain5000Steps) {
   const Fraction base{"2", "3"};
 
   Fraction acc = Fraction::ONE;
-  const double ms = measure_ms([&]() {
+  const double ms = measure_ms([&] {
     for (int i = 0; i < N; ++i) {
       acc = acc * base;
     }
@@ -427,13 +428,13 @@ TEST_F(FractionPerformanceTest, DeferredSimplifyFasterThanEager) {
   constexpr int N = 200;
   const Fraction base(make_large(200, 3UL), make_large(200, 7UL));
 
-  const double deferred_ms = measure_ms([&]() {
+  const double deferred_ms = measure_ms([&] {
     Fraction acc = Fraction::ONE;
     for (int i = 0; i < N; ++i) acc = acc * base;
     acc.simplify();
   });
 
-  const double eager_ms = measure_ms([&]() {
+  const double eager_ms = measure_ms([&] {
     Fraction acc = Fraction::ONE;
     for (int i = 0; i < N; ++i) {
       acc = acc * base;
@@ -442,7 +443,7 @@ TEST_F(FractionPerformanceTest, DeferredSimplifyFasterThanEager) {
   });
 
   std::cout << "[PERF] deferred=" << deferred_ms << " ms  eager=" << eager_ms
-            << " ms  ratio=" << (eager_ms / deferred_ms) << "x\n";
+            << " ms  ratio=" << eager_ms / deferred_ms << "x\n";
 
   EXPECT_LT(deferred_ms, eager_ms);
 }
@@ -456,14 +457,14 @@ TEST_F(FractionPerformanceTest, KnuthAdditionFasterThanNaive) {
 
   constexpr int reps = 20;
 
-  const double knuth_ms = measure_ms([&]() {
+  const double knuth_ms = measure_ms([&] {
     for (int i = 0; i < reps; ++i) {
-      Fraction r = a + b;
+      const Fraction r = a + b;
       (void)r;
     }
   });
 
-  const double naive_ms = measure_ms([&]() {
+  const double naive_ms = measure_ms([&] {
     for (int i = 0; i < reps; ++i) {
       mpz_class n = a.get_num() * b.get_den() + b.get_num() * a.get_den();
       mpz_class d = a.get_den() * b.get_den();
@@ -477,7 +478,7 @@ TEST_F(FractionPerformanceTest, KnuthAdditionFasterThanNaive) {
   });
 
   std::cout << "[PERF] knuth=" << knuth_ms << " ms  naive=" << naive_ms
-            << " ms  ratio=" << (naive_ms / knuth_ms) << "x\n";
+            << " ms  ratio=" << naive_ms / knuth_ms << "x\n";
 
   EXPECT_LT(knuth_ms, naive_ms);
 }
@@ -485,7 +486,7 @@ TEST_F(FractionPerformanceTest, KnuthAdditionFasterThanNaive) {
 TEST_F(FractionPerformanceTest, GetValue10kDigits) {
   const Fraction f{"1", "7"};
 
-  const double ms = measure_ms([&]() {
+  const double ms = measure_ms([&] {
     const std::string r = f.get_value(10000);
     ASSERT_EQ(r.substr(0, 12), "0.1428571428");
     ASSERT_EQ(r.size(), 10002u);
@@ -498,7 +499,7 @@ TEST_F(FractionPerformanceTest, GetValue10kDigits) {
 TEST_F(FractionPerformanceTest, GetValue100kDigitsAllThrees) {
   const Fraction f{"1", "3"};
 
-  const double ms = measure_ms([&]() {
+  const double ms = measure_ms([&] {
     const std::string r = f.get_value(100000);
     ASSERT_EQ(r.size(), 100002u);
     for (std::size_t i = 2; i < r.size(); ++i) {
