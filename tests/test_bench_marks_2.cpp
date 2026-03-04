@@ -73,14 +73,11 @@ Stats measure(Fn&& fn, const int reps) {
   oss << "\n[Benchmark] " << ctx.label << "\n"
       << "  nat             = " << ctx.nat << "\n"
       << "  k               = " << ctx.k << "\n"
-      << "  precision       = " << ctx.precision_digits << " digits"
-      << "\n"
-      << "  reps            = " << s.reps << " (+ 1 warmup discarded)"
-      << "\n"
+      << "  precision       = " << ctx.precision_digits << " digits\n"
+      << "  reps            = " << s.reps << " (+ 1 warmup discarded)\n"
       << std::fixed << std::setprecision(6)
       << "  min             = " << std::setw(w) << s.min_s
-      << " s  <-- REFERENCE VALUE"
-      << "\n"
+      << " s  <-- REFERENCE VALUE\n"
       << "  mean            = " << std::setw(w) << s.mean_s << " s\n"
       << "  max             = " << std::setw(w) << s.max_s << " s\n"
       << "  stddev          = " << std::setw(w) << s.stddev_s << " s\n"
